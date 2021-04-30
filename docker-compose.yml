@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  address_book:
+    build: .
+    restart: always
+    container_name: address_book
+    environment:
+      - PORT=3000
+      - REDIS_URL=redis://rd
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./:/home/node/app
+
+  rd:
+    image: redis
+    expose:
+      - '6379'
